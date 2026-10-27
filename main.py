@@ -39,8 +39,35 @@
 #Equipe:Personnage1,Personnage2,Personnage3
 
 
-def main():
-    db=get_database
+import array as arr 
+Menu=[ ""
+"Lancerjeu"
+"Afficher Score"
+"Quitter"
+]
+def afficher_menu():
+    print("\n...Menu....")
+    for i, option in enumerate (MENU):
+        print(f"{i}.{option}")
+
+def erreur ():
+    print("Choix invalide.Veuillez réessayer")
+
+def choix_utilisateur():
+    while True:
+        Afficher_menu()
+        saisie=input("Choisissez une option") 
+        if saisie.isdigit():
+            choix=int (saisie)
+            if 1<=choix <= len(Menu):
+                return choix
+            erreur
+            
+            
+
+
+
+
 
 
 

@@ -1,0 +1,151 @@
+```
+Etape 1 
+
+# MENU = [
+#   "Lancer Jeu",
+#   "Afficher les scores",
+#   "Quitter",
+#    ]
+# Menu
+#   Boucle sur tout element de MENU
+#       afficher numero element et texte element
+# Choix (options, erreur)
+#    while True:
+#        Recuperer choix utilisateur
+#        Verifier si choix est valide
+#        Si valide
+#             return choix
+#        Sinon
+#             Lancer fonction erreur
+# Process
+#    JEU
+#    Afficher les scores
+#        Recuperer scores base
+#            ouvrir base
+#            acceder a collection score
+#            find
+#            convertir curseur en list
+#        filtrer les 3 meilleurs
+#             trie le tableau sur element.waves
+#             prendre 3 derniers elements
+#                    array[-3:-1]
+#        Affiche les score
+#    Quitter
+#       sys.exit()
+
+
+def GetName():
+    name = input("Entrez votre nom: ")
+    return name
+
+
+def GetRNDName():
+    import random
+    names = ["Alice", "Bob", "Charlie", "Diana"]
+    return random.choice(names)
+
+
+def print_hello(name_func):
+    name = name_func()
+    print(f"Bonjour, {name} !")
+
+
+print_hello(GetName)
+print_hello(GetRNDName)
+
+```
+
+
+
+#CREATION JOUEUR 
+
+recupérer le nom de l'utilisateur
+si nom valide 
+
+
+
+
+
+
+
+
+
+Création d'une equipe
+
+fonction Listes_personnages(on lui donne la collection Héro){
+    Acceder a la collection Héro dans mongodb
+   recuperer tout les éléments de la collection héro (En utilisant Find)
+   Afficher tout les element dans un tableau Personnage[]
+   retourner une liste avec tous les personnages 
+}
+
+Fonction choix_Personnage(Liste_personnages,erreur ){
+
+    i=0
+    while (i<3){
+
+    Appeler la fonction list_personnage 
+    Afficher("Choisir un personnage ") // le joieur doit choisir un perso en cliquant sur l'un des chiffres 
+    si 
+    le chiffre choisis est dans la liste on affiche le perso correspondant ET ON STOCKE le resultat ddans l'uune de nos variable 
+    sinon 
+    on lance l'erreur 
+    i=i+1
+     }
+
+
+
+     //Jeu
+
+     Fonction afficherstats(){
+
+     }
+     Fonction monstre_aléatoire(){
+        Accéder a la collection monstre dans la bdd 
+        choisir aleatoirement un monstre depuis la bdd et l'afficher avec ses stats defense pv attaque 
+
+
+         }
+
+
+         Phase de combat {
+             A chaque 
+         }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+Liste_personnage[""]
+
+
+
+combat infini
+enregister le score da,s la db 
+afficher le score
