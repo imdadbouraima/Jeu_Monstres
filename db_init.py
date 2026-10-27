@@ -1,9 +1,11 @@
 #Connection a la base de donneés
 
-import sys
+import sys 
 from mongopy import Mongo
 
 def get_database():
-    Client=MongoClient("")
-    db=Client[""]
+    Client=MongoClient("mongodb://localhost27017")
+    db=Client["Jeu_video"]
     return db
+
+
