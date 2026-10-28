@@ -114,6 +114,12 @@ Fonction choix_Personnage(Liste_personnages,erreur ){
 
 
 
+         #if choix_hero<1 or choix_hero>len(heros):
+            print("Erreur ce hero n'existe pas ")
+            continue
+
+
+
 
 
 

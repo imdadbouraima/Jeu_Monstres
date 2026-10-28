@@ -38,6 +38,7 @@
 
 #Equipe:Personnage1,Personnage2,Personnage3
 from db_init import db
+
 Menu=[
 "Lancerjeu","Afficher Score","Quitter"
 ]
@@ -46,11 +47,8 @@ def afficher_menu():
     for i, option in enumerate (Menu,start=1):
         print(f"{i}.{option}")
 
-
 def erreur ():
     print("Choix invalide.Veuillez réessayer")
-
-
 
 def choix_utilisateur():
     while True:
@@ -88,19 +86,36 @@ def Afficher_personnages():
 
 def cree_equipe():
     equipe =  []
-    hero = list(db["Hero"].find())
+    heros = list(db["Hero"].find())
     while len(equipe)<3:
-        A
+        Afficher_personnages()
+        choix_hero = (input("Choisissez le numero de votre hero "))
+        choix_hero=int (choix_hero)
+
+        hero_choisis = heros[choix_hero -1]
+
+        equipe.append(hero_choisis)
+        print(f"{hero_choisis['name']} ajouter a votre équipe.")
+
+    print("\n....Votre Equipe.......")
+    for hero in equipe:
+        print(hero_choisis["name"])
+
+    return equipe
+
+
+
 
 
     
  
     
 #1er cas le joueur choisis 1 et veut lancer une partie 
-#On lui proposer d'abord d'entrer son nom 
+#On lui proposer d'abord d'entrer son nom ENSUITE on lui affiche les personnage et ensuite on lui propose d'entrer un chiffre pour sélectionner son personnage  
 if choix==1:
     nom=get_nom()
     Afficher_personnages()
+    equipe=cree_equipe()
 
     
 else:
