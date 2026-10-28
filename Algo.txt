@@ -118,18 +118,7 @@ Fonction choix_Personnage(Liste_personnages,erreur ){
 
 
 
-
-
-
-
-
-
-
-
-
-    
-
-    }
+ }
 
 
 

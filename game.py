@@ -6,3 +6,5 @@
 #une nouvelle fonction pour afficher les trois perso choisis par l'utilisateur 
 # la fonction de choix aléatoire du monstre est appellé 
 #chaque perso de l'équipe attaque le monstre avec 
+
+

@@ -29,7 +29,7 @@
 # 6-personnage 6-ATK X6,DEF Y6,PV Z6;
 # 7-personnage 7-ATK X7,DEF Y7,PV Z7;
 # 8-personnage 8-ATK X8,DEF Y8,PV Z8;
-# 9-personnage 9-ATK X9,DEF Y9,PV Z9;
+# 9-personnage 9-ATK X9,DEF Y9,PV Z9; N
 
 
 #Choix des personnages 
@@ -37,35 +37,105 @@
 #On affiche le nom de tous les personnages que l'utilisateur aura choisis DANS equipe 
 
 #Equipe:Personnage1,Personnage2,Personnage3
-
-
-import array as arr 
-Menu=[ ""
-"Lancerjeu"
-"Afficher Score"
-"Quitter"
+from db_init import db
+Menu=[
+"Lancerjeu","Afficher Score","Quitter"
 ]
 def afficher_menu():
     print("\n...Menu....")
-    for i, option in enumerate (MENU):
+    for i, option in enumerate (Menu,start=1):
         print(f"{i}.{option}")
+
 
 def erreur ():
     print("Choix invalide.Veuillez réessayer")
 
+
+
 def choix_utilisateur():
     while True:
-        Afficher_menu()
-        saisie=input("Choisissez une option") 
+        afficher_menu()
+        saisie=input("Choisissez une option: ") 
         if saisie.isdigit():
             choix=int (saisie)
-            if 1<=choix <= len(Menu):
+            if 1<= choix <= len(Menu):
                 return choix
-            erreur
+        erreur()
+
+choix=choix_utilisateur()
+
+def get_nom():
+    while True:
+        nom=input("Veuillez entrer votre nom :")
+
+        if not nom:
+            print("Erreur le champ nom ne peut pas etre vide")
+            continue
+
+        return nom
+
+def Afficher_personnages():
+    print("\n......Personnages disponibles......")
+    hero = db["Hero"].find()
+
+    for i,hero in enumerate(hero,start=1):
+        print(
+            f"{i}-{hero['name']}:"
+            f"PV {hero['hp']}, "
+            f"ATK {hero['attack']}, "
+           f"PV {hero['defense']}, "
+        )
+
+def cree_equipe():
+    equipe =  []
+    hero = list(db["Hero"].find())
+    while len(equipe)<3:
+        A
+
+
+    
+ 
+    
+#1er cas le joueur choisis 1 et veut lancer une partie 
+#On lui proposer d'abord d'entrer son nom 
+if choix==1:
+    nom=get_nom()
+    Afficher_personnages()
+
+    
+else:
+    print("Choix invalide réessayer")
+
+
+
+
+
+
+
+
+
+
+     
+
+
+
+
+
+
+       
+
+
+
+
+        
+
             
+
             
 
 
+            
+            
 
 
 
