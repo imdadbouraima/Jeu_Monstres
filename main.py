@@ -15,11 +15,17 @@
 
 #une fois le nom de l'utilisateur entrée  l'utilisateur doit créer son équipe on propose un menu pour la création de l'équipe
 
-
+   
 # Menu creation d'équipe 
-# Affichage des différents heros disponibles avec leur points disponibles en suivant 
-# ce format pour permettre a l'utilisateur de choisir son personnage
+#Afficher la liste des persos disponible
+#Créé un tableau équipe pour stocker les hero entrer par l'utilisateur     
+#proposer a l'utilisateur d'entrer le numero du hero qu'il a choisis 
+#tant que le nuemro entrer par l'utilisateur n'est pas dans notre tableau 
+#Stocker le numéro du héro choisis dans le tableau
+#retouner le tableai avec l'équipe 
 
+
+#Si le perso n'est pas dans la liste 
 #Chaque personnage peut etre sélectionner une seul fois 
 # 1-Personnage 1- ATK X1,DEF Y1,PV Z1;
 # 2-personnage 2-ATK X2,DEF Y2,PV Z2;
@@ -38,6 +44,9 @@
 
 #Equipe:Personnage1,Personnage2,Personnage3
 from db_init import db
+import game
+
+
 
 Menu=[
 "Lancerjeu","Afficher Score","Quitter"
@@ -50,17 +59,16 @@ def afficher_menu():
 def erreur ():
     print("Choix invalide.Veuillez réessayer")
 
-def choix_utilisateur():
+def choix_utilisateur(maximum): # PLUS GENERAL ( NE PAS LIER A UN MENU EN PARTICULIER )
     while True:
-        afficher_menu()
-        saisie=input("Choisissez une option: ") 
+        saisie=input("Choisissez : ") 
         if saisie.isdigit():
             choix=int (saisie)
             if 1<= choix <= len(Menu):
                 return choix
         erreur()
 
-choix=choix_utilisateur()
+choix=choix_utilisateur(len(Menu))
 
 def get_nom():
     while True:
@@ -72,34 +80,38 @@ def get_nom():
 
         return nom
 
-def Afficher_personnages():
+def Afficher_personnages(heroes):
     print("\n......Personnages disponibles......")
-    hero = db["Hero"].find()
 
-    for i,hero in enumerate(hero,start=1):
+    for i,hero in enumerate(heroes,start=1):
         print(
             f"{i}-{hero['name']}:"
             f"PV {hero['hp']}, "
             f"ATK {hero['attack']}, "
-           f"PV {hero['defense']}, "
+           f"DEF {hero['defense']}, "
         )
 
 def cree_equipe():
     equipe =  []
     heros = list(db["Hero"].find())
+    
     while len(equipe)<3:
-        Afficher_personnages()
-        choix_hero = (input("Choisissez le numero de votre hero "))
-        choix_hero=int (choix_hero)
+        Afficher_personnages(heros)
+        numero=choix_utilisateur(len(heros))
+        hero_choisis=heros[numero -1]
 
-        hero_choisis = heros[choix_hero -1]
+        if hero_choisis in equipe:
+                    print("Ce héro est deja dans votre equipe")
+                    continue
+        
 
         equipe.append(hero_choisis)
         print(f"{hero_choisis['name']} ajouter a votre équipe.")
 
     print("\n....Votre Equipe.......")
     for hero in equipe:
-        print(hero_choisis["name"])
+        print(hero["name"])
+
 
     return equipe
 
@@ -107,15 +119,19 @@ def cree_equipe():
 
 
 
-    
- 
-    
+
 #1er cas le joueur choisis 1 et veut lancer une partie 
 #On lui proposer d'abord d'entrer son nom ENSUITE on lui affiche les personnage et ensuite on lui propose d'entrer un chiffre pour sélectionner son personnage  
+
 if choix==1:
+    
     nom=get_nom()
-    Afficher_personnages()
+    heroes = db["Hero"].find()
+    Afficher_personnages(heroes)
     equipe=cree_equipe()
+    game.monstre_aleatoire()
+
+
 
     
 else:
